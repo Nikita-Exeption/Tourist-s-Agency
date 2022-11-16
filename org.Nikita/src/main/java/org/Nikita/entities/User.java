@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Entity(name = "user")
+@Entity(name = "users")
 public class User {
 
     @Id
@@ -27,6 +27,27 @@ public class User {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
+    public User(Long userId, String name, String phone, List<Ticket> tickets) {
+        this.userId = userId;
+        this.name = name;
+        this.phone = phone;
+        this.tickets = tickets;
+    }
+
+    public User(String name, String phone, List<Ticket> tickets) {
+        this.name = name;
+        this.phone = phone;
+        this.tickets = tickets;
+    }
+
+    public User(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
+    public User() {
+    }
+
     public Long getId() {
         return userId;
     }
@@ -37,5 +58,9 @@ public class User {
 
     public List<Ticket> getTickets() {
         return tickets;
+    }
+
+    public String getName() {
+        return name;
     }
 }

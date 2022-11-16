@@ -45,6 +45,15 @@ public class Ticket {
         this.timeArrive = timeArrive;
     }
 
+    public Ticket(String name, BigDecimal price, String fromCity, String toCity, LocalDateTime timeLeave, LocalDateTime timeArrive) {
+        this.name = name;
+        this.price = price;
+        this.fromCity = fromCity;
+        this.toCity = toCity;
+        this.timeLeave = timeLeave;
+        this.timeArrive = timeArrive;
+    }
+
     public Long getTicketId() {
         return ticketId;
     }

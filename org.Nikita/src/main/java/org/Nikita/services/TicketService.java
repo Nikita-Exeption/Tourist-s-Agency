@@ -6,9 +6,7 @@ import org.Nikita.exceptions.TicketDateNotValidException;
 import org.Nikita.exceptions.TicketNotFoundException;
 import org.Nikita.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,11 +68,6 @@ public class TicketService {
     public List<Ticket> findByToCity(String toCity){
         LOG.info("get list of tickets by to city: " + toCity);
         return validateListOfTickets(repository.findByToCity(PageRequest.of(0, 10, Sort.by("toCity")), toCity).orElseThrow(TicketNotFoundException::new));
-    }
-
-    public List<Ticket> findTicketFromBetweenTwoTime(LocalDateTime oneTime, LocalDateTime twoTime){
-        LOG.info("get list of tickets between time leave and time arrive: " + oneTime + ", " + twoTime);
-        return validateListOfTickets(repository.findByTimeLeaveBetween(oneTime, twoTime).orElseThrow(TicketNotFoundException::new));
     }
 
     public List<Ticket> findTicketFromCityAndToCity(String fromCity, String toCity){
